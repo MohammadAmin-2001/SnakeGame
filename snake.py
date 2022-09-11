@@ -14,21 +14,19 @@ class Snake:
         self.direction = direction
         game.get_cell(pos).set_color(color)
 
-    def check_key(self, key):
-
-        mov = self.keys[key]
-        if mov == self.direction:
+    def set_key(self, mov):
+        key=self.keys[mov]
+        if key ==self.direction:
             return False
-        elif mov == "LEFT" and self.direction == "RIGHT":
-            return False
-        elif mov == "RIGHT" and self.direction == "LEFT":
-            return False
-        elif mov == "UP" and self.direction == "DOWN":
-            return False
-        elif mov == "DOWN" and self.direction == "UP":
-            return False
-        else:
+        if key == "UP" and self.direction != "DOWN":
             return True
+        if key == "DOWN" and self.direction != "UP":
+            return True
+        if key == "LEFT" and self.direction != "RIGHT":
+            return True
+        if key == "RIGHT" and self.direction != "LEFT":
+            return True
+
 
     def get_head(self):
         return self.cells[-1]
@@ -67,6 +65,7 @@ class Snake:
     def handle(self, keys):
         for key in keys:
             if key in self.keys:
-                if self.check_key(key):
-                    self.direction = self.keys[key]
-                    break
+               if self.set_key(key):
+                self.direction = self.keys[key]
+                break
+

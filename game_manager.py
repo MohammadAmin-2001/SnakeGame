@@ -13,6 +13,7 @@ class GameManager:
         self.sy = sy
         self.snakes = list()
         self.turn = 0
+        # self.finished=False
 
         for i in range(self.size):
             tmp = []
@@ -48,7 +49,7 @@ class GameManager:
 
                 for x in range(0, self.size):
                     for y in range(0, self.size):
-                        if self.get_cell((x, y)) != consts.back_color:
+                        if self.get_cell((x, y)).color != consts.back_color:
                             mn = min(mn, int(abs(x-i) + abs(y-j) ))
                 if mn > mx:
                     mx = mn
@@ -63,13 +64,14 @@ class GameManager:
 
         for snake in self.snakes:
             snake.next_move()
-        pygame.display.update()
 
-        # set food
         self.turn += 1
         if self.turn % 10 == 0:
-
             self.get_cell(self.get_next_fruit_pos()).set_color(consts.fruit_color)
+
+        # if len(self.snakes)==0:
+        #     self.finished = True
+
 
 
     # @property
