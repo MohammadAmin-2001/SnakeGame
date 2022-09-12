@@ -15,8 +15,8 @@ def main():
 
     while True:
         events = pygame.event.get()
-        k
-        keys = ['a', 'l', 's', 'a', 'w', 'd', 'l', 'l', 'i', 'd', 's', 'l', 'j', 'k', 'l', 'k', 'i', 'w', 'j', 'k', 'j', 'w', 'j', 'l', 'i',]
+
+        keys = []
         for event in events:
             if event.type == pygame.QUIT:
                 sys.exit()
